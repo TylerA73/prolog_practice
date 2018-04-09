@@ -26,3 +26,31 @@ num_elem([_|L], N) :- num_elem(L, N1), N is N1 + 1.
 %	P05
 %	Reverse a list
 
+my_reverse([],[]).
+my_reverse([E|L], R) :- my_reverse(L, Rev), append(Rev, [E], R).
+
+%	P06
+%	Palindrome
+
+my_palindrome([]).
+my_palindrome(L) :- my_reverse(L, L).
+
+%	P07
+%	Flatten
+
+my_flatten([],[]).
+my_flatten(X, [X]) :- atomic(X), not(X=[]).
+my_flatten([X|L], Y) :- my_flatten(X, A), my_flatten(L, B), append(A, B, Y).
+
+%	P08
+%	Compress duplicates
+
+my_compress([],[]).
+my_compress([X],[X]).
+my_compress([X,X|Xs], Z) :- my_compress([X|Xs], Z).
+my_compress([X,Y|Ys], [X|Z]) :- not(X is Y), my_compress([Y|Ys], Z).
+
+%	P09
+%	Pack
+
+
